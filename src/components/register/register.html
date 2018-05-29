@@ -1,0 +1,24 @@
+<ion-card>
+    <ion-card-header style="background-color: #4d4284; padding-top: 25px; padding-bottom: 25px;">
+      <p style="color: #fff; font-size: 25px; font-family: 'Crete Round'">Votre logo</p>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list inset>
+        <ion-item>
+          <ion-label>
+            <ion-icon name="person" style="color: #ac82ce"></ion-icon>
+          </ion-label>
+          <ion-input [(ngModel)]="account.email" type="email" placeholder="Email"></ion-input>
+        </ion-item>
+        <ion-item style="margin-top: 10px;">
+            <ion-label>
+              <ion-icon name="lock" style="color: #ac82ce"></ion-icon>
+            </ion-label>
+            <ion-input [(ngModel)]="account.password" type="password" placeholder="Password"></ion-input>
+         </ion-item>
+
+        <hr>
+      </ion-list>
+      <p style="text-align: center"><button ion-button color="primary" outline (click)="register()">Enregistrer</button></p>
+    </ion-card-content>
+  </ion-card>

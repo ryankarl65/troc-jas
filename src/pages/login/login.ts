@@ -21,13 +21,6 @@ export class LoginPage {
   constructor(private navCtrl: NavController, private navParams: NavParams) {
   }
 
-  goToMenuPage(): void{
-    this.navCtrl.setRoot('MenuPage');
-  }
-  goToRegisterPage(): void{
-    this.navCtrl.push('RegisterPage');
-}
-
 
 
 }
