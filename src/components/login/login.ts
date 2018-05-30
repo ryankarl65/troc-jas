@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
 import { Account } from '../../models/account/account';
+import { LoginResponse } from '../../models/login/login-response';
+import { ViewOrContainerState } from '@angular/core/src/render3/interfaces';
+import { AuthService } from '../../providers/auth/auth.service';
 
 
 /**
@@ -18,11 +20,13 @@ export class LoginComponent {
 
   account = {} as Account;
 
+  @Output() loginStatus: EventEmitter<LoginResponse>;
+
   text: string;
 
-  constructor(private navCtrl: NavController, private afAuth: AngularFireAuth) {
-    console.log('Hello LoginComponent Component');
-    this.text = 'Hello World';
+  constructor(private navCtrl: NavController, private auth: AuthService) {
+
+    this.loginStatus = new EventEmitter<any>();
   }
 
 
@@ -34,13 +38,29 @@ export class LoginComponent {
 }
 
 async login(){
-  try{
-    const result = await this.afAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password);
+
+    const loginResponse = await this.auth.signInWithEmailAndPassword(this.account);
+
+    this.loginStatus.emit(loginResponse);
+
+
+
+ /* try{
+    const result: LoginResponse = {
+      result: await this.afAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password)
+    }
+    this.loginStatus.emit(result);
     this.navCtrl.push('MenuPage');
-    console.log(result);
   }catch(e){
     console.error(e);
-  }
+
+    const error: LoginResponse = {
+      error: e
+    }
+
+    this.loginStatus.emit(error);
+  }*/
+
 }
 
 }

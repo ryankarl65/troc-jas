@@ -25,7 +25,15 @@
   src: url('../assets/fonts/ABeeZee.woff2') format('woff2');
 }
 
-p{
+p , ion-title{
   font-family: ABeeZee;
+}
+
+ion-button{
+  font-family: 'Crete Round';
+}
+
+ion-label{
+  font-family: 'Open Sans';
 }
 
