@@ -19,6 +19,7 @@ const config = {
 
 import { MyApp } from "./app.component";
 import { AuthService } from "../providers/auth/auth.service";
+import { DataProvider } from '../providers/data/data';
 
 @NgModule({
   declarations: [MyApp],
@@ -35,7 +36,8 @@ import { AuthService } from "../providers/auth/auth.service";
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthService
+    AuthService,
+    DataProvider
   ]
 })
 export class AppModule {}

@@ -1,9 +1,9 @@
-import { User } from "../user/user";
+import { Profil } from "../user/user";
 import { Categorie } from "../categorie/categorie";
 
 
 export interface Article {
-  user: User;
+  user: Profil;
   categorie: Categorie;
   marque: string;
   description: string;

@@ -4,7 +4,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MESSAGE_LIST } from '../../moocks/message/message';
 
 import { Message } from '../../models/message/message';
-import { User } from '../../models/user/user';
+import { Profil } from '../../models/user/user';
 
 /**
  * Generated class for the MessagePage page.

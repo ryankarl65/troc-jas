@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { LoginResponse } from '../../models/login/login-response';
+import { DataProvider } from '../../providers/data/data';
+import { User } from 'firebase/app';
 
 
 
@@ -20,6 +22,7 @@ import { LoginResponse } from '../../models/login/login-response';
 export class LoginPage {
 
   constructor(
+    private data: DataProvider,
     private toast: ToastController,
     private navCtrl: NavController, private navParams: NavParams) {
   }
@@ -31,7 +34,10 @@ export class LoginPage {
         message: 'Bienvenu dans JeToum',
         duration: 3000
       }).present();
-      this.navCtrl.setRoot('MenuPage');
+      this.data.getProfil(<User>event.result).subscribe(profil => {
+        console.log(profil);
+        profil.val() ? this.navCtrl.setRoot('MenuPage') : this.navCtrl.setRoot('EditProfilPage');
+      })
     }
     else{
       this.toast.create({

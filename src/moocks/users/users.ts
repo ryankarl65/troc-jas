@@ -1,7 +1,7 @@
-import { User } from "../../models/user/user";
+import { Profil } from "../../models/user/user";
 
 
-const userList: User[] = [
+const userList: Profil[] = [
   {nom: 'Kamtou', prenom: 'Boris', ville: 'yaoundé', pays: 'Cameroun', numero: '653346688', email: 'boriskamtou@gmail.com', photo: 'assets/img/index.png'},
   {nom: 'Savom', prenom: 'Ayol', ville: 'yaoundé', pays: 'Cameroun', numero: '653346688', email: 'savomayol@gmail.com', photo: 'assets/img/index.png'},
   {nom: 'Miba', prenom: 'Rosny', ville: 'yaoundé', pays: 'Cameroun', numero: '653346688', email: 'rosny127@gmail.com', photo: 'assets/img/index.png'},

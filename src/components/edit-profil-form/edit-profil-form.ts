@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { User } from '../../models/user/user';
+import { Component, OnDestroy } from '@angular/core';
+import { Profil } from '../../models/user/user';
+import { DataProvider } from '../../providers/data/data';
+import { AuthService } from '../../providers/auth/auth.service';
+import { Subscription } from 'rxjs/Subscription';
+import { User } from 'firebase/app';
 
 /**
  * Generated class for the EditProfilFormComponent component.
@@ -11,16 +15,31 @@ import { User } from '../../models/user/user';
   selector: 'edit-profil-form',
   templateUrl: 'edit-profil-form.html'
 })
-export class EditProfilFormComponent {
+export class EditProfilFormComponent implements OnDestroy {
 
-  user = {} as User;
+  private authenticateUser$: Subscription;
+  private authenticateUser: User;
 
-  constructor() {
+  profil = {} as Profil;
+
+  constructor(private data: DataProvider, private auth: AuthService) {
+
+    this.authenticateUser$ = this.auth.getAuthenticationUser().subscribe((user: User) => {
+      this.authenticateUser = user;
+    });
 
   }
 
-  validerProfil(){
+  async validerProfil(){
+    if (this.authenticateUser){
+      this.profil.email = this.authenticateUser.email;
+      const result = await this.data.validerProfil(this.authenticateUser, this.profil);
+      console.log(result);
+    }
+  }
 
+  ngOnDestroy(): void {
+    this.authenticateUser$.unsubscribe();
   }
 
 }

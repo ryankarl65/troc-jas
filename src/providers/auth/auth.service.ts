@@ -13,6 +13,10 @@ import { LoginResponse } from '../../models/login/login-response';
 @Injectable()
 export class AuthService {
 
+  getAuthenticationUser(){
+    return this.auth.authState;
+  }
+
   constructor(private auth: AngularFireAuth) {
     console.log('Hello AuthProvider Provider');
   }
